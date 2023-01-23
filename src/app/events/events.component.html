@@ -1,0 +1,14 @@
+<section id="caroussel">
+  <div class="blocEvent" *ngFor="let event of listEvents">
+    <div class="dateEvent">
+      <div>{{ event.date.toString().slice(0, 10) }}</div>
+    </div>
+    <div class="rightPart">
+      <div class="typeEvent">{{ event.nom }}</div>
+      <div class="lieuEvent">{{ event.lieu }}</div>
+      <div class="rdvEvent">{{ event.heure }}</div>
+      <div class="rdvEvent">{{ event.prix }}€</div>
+    </div>
+    <a (click)="inscription(event.id)">S'inscrire</a>
+  </div>
+</section>
