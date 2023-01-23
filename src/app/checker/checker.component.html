@@ -1,0 +1,6 @@
+<zxing-scanner (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+
+<section class="results" *ngIf="qrResultString">
+  <small>Result</small>
+  <strong>{{ qrResultString }}</strong>
+</section>

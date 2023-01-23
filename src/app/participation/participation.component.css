@@ -1,0 +1,7 @@
+form {
+  background-color: white;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+}

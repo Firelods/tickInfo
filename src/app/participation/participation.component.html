@@ -1,0 +1,44 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      [formControl]="emailFormControl"
+      placeholder="Ex. pat@example.com"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nom</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="surNameFormControl"
+      placeholder="Lefevre"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Prénom</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="nameFormControl"
+      placeholder="Clément"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Soirée</mat-label>
+    <mat-select
+      [(ngModel)]="selectedEvent"
+      [formControl]="eventFormControl"
+      name="event"
+    >
+      <mat-option *ngFor="let event of listEvents" [value]="event.id">
+        {{ event.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button (click)="submit()" type="submit" mat-raised-button color="primary">
+    Connexion
+  </button>
+</form>
