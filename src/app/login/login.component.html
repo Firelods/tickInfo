@@ -8,4 +8,13 @@
       placeholder="Ex. pat@example.com"
     />
   </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Mot de passe</mat-label>
+    <input
+      type="password"
+      matInput
+      [formControl]="passwordFormControl"
+    />
+  </mat-form-field>
+  <button (click)="submit();" type="submit" mat-raised-button color="primary">Connexion</button>
 </form>
