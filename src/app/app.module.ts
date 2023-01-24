@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ParticipationComponent } from './participation/participation.component';
 import { MatSelectModule } from '@angular/material/select';
 import { CheckerComponent } from './checker/checker.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +40,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MatOptionModule,
     MatInputModule,
     MatSelectModule,
-    ZXingScannerModule,
-
+    NgxScannerQrcodeModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpJwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

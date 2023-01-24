@@ -24,6 +24,8 @@ export class ParticipationComponent implements OnInit {
   }
   submit() {
     if (this.emailFormControl.invalid || this.eventFormControl.invalid || this.emailFormControl.value == null || this.eventFormControl.value == null || this.surNameFormControl.value == null || this.nameFormControl.value == null) {
+      // window alert
+      window.alert("Veuillez remplir tous les champs");
       return;
     }
     this.ParticipationService.participate(this.emailFormControl.value, this.surNameFormControl.value, this.nameFormControl.value, this.eventFormControl.value);

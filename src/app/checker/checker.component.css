@@ -1,0 +1,16 @@
+ngx-scanner-qrcode {
+  margin-top: 20vh;
+}
+#rescan {
+  margin-left: 30px;
+  margin-bottom: 10px;
+  padding: 1em;
+  /* background-color: #f5f5f5; */
+  cursor: pointer;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: rgb(131, 2, 2);
+}

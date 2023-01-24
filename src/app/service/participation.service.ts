@@ -14,8 +14,10 @@ export class ParticipationService {
       return;
     }
     var bde = this.loginService.getUser().bde;
-    this.http.post(this.requestService.url + 'api/event/participate', { email, surname, name, bde, idEvent }).subscribe((data) => {
-      console.log(data);
+    this.http.post<any>(this.requestService.url + 'api/event/participate', { email, surname, name, bde, idEvent }).subscribe((data) => {
+      if (data[0].id != null) {
+        alert("Etudiant ajouté avec succès");
+      }
     });
   }
 }

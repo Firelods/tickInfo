@@ -23,6 +23,8 @@ export class LoginService {
   getUser(): any {
     //get user from token
     const token = localStorage.getItem('token');
+    console.log(token);
+
     if (token == null) {
       this.router.navigate(['/login'])
       return {};

@@ -1,6 +1,35 @@
-<zxing-scanner (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
-
+<!-- <zxing-scanner (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner> -->
+<ngx-scanner-qrcode
+  #action="scanner"
+  [config]="config"
+  (event)="onEvent($event)"
+></ngx-scanner-qrcode>
+<button
+  class="btn"
+  [class.btn-info]="!action.isStart"
+  [class.btn-warning]="action.isStart"
+  [disabled]="action.isLoading"
+>
+  <img
+    *ngIf="!action.isStart"
+    (click)="handle(action, 'start')"
+    src="https://img.icons8.com/ios/50/000000/no-camera--v2.png"
+    width="30px"
+  />
+  <img
+    *ngIf="action.isStart"
+    (click)="handle(action, 'stop')"
+    src="https://img.icons8.com/ios/50/000000/no-camera--v1.png"
+    width="30px"
+  />
+</button>
+<button
+  (click)="this.request = true; this.qrResultString = ''"
+  [className]="this.request ? 'green' : 'red'"
+  id="rescan"
+>
+  ReScanner
+</button>
 <section class="results" *ngIf="qrResultString">
-  <small>Result</small>
   <strong>{{ qrResultString }}</strong>
 </section>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { RequestService } from './../service/request.service';
 import jwtDecode from 'jwt-decode';
 import { Component, OnInit, VERSION, ViewChild } from '@angular/core';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { ScannerQRCodeConfig, ScannerQRCodeResult } from 'ngx-scanner-qrcode';
 
 @Component({
   selector: 'app-checker',
@@ -11,30 +11,41 @@ import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 })
 export class CheckerComponent implements OnInit {
   ngVersion = VERSION.full;
+  public config: ScannerQRCodeConfig = {
+    // fps: 1000,
+    // isAuto: false,
+    // isBeep: true,
+    // decode: 'macintosh',
+    medias: {
+      audio: false,
+      video: {
+        width: window.innerWidth
+      }
+    }
+  };
 
-  @ViewChild('scanner')
-  scanner: ZXingScannerComponent;
-
-  hasDevices: boolean;
-  hasPermission: boolean;
-  qrResultString: string;
-  qrResult: any;
   request: boolean = true;
-  availableDevices: MediaDeviceInfo[];
-  currentDevice: MediaDeviceInfo;
+  qrResultString: string;
 
   constructor(private requestService: RequestService, private http: HttpClient) { }
 
   ngOnInit(): void {
 
   }
-  handleQrCodeResult(resultString: string) {
-    if (this.request) {
-      this.http.post<{ message: string }>(this.requestService.url + 'api/student/useInvite', { "token": resultString }).subscribe((data: { message: string }) => {
-        this.qrResultString = data.message;
+  public onEvent(e: ScannerQRCodeResult[]): void {
+    if (e[0].typeName == 'ZBAR_QRCODE') {
+      if (this.request) {
         this.request = false;
-      });
+        this.http.post<{ message: string }>(this.requestService.url + 'api/student/useInvite', { "token": e[0].value }).subscribe((data: { message: string }) => {
+          this.qrResultString = data.message;
+
+        });
+      }
+      return;
     }
-    return;
+  }
+
+  public handle(action: any, fn: string): void {
+    action[fn]().subscribe(console.log, alert);
   }
 }
